@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_164030) do
+ActiveRecord::Schema.define(version: 2019_03_20_213525) do
+
+  create_table "book_reviews", force: :cascade do |t|
+    t.integer "book_rating"
+    t.text "user_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "book_id"
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -20,12 +29,25 @@ ActiveRecord::Schema.define(version: 2019_03_19_164030) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "genre_id"
+    t.string "b_image_file_name"
+    t.string "b_image_content_type"
+    t.bigint "b_image_file_size"
+    t.datetime "b_image_updated_at"
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "book_id"
   end
 
   create_table "users", force: :cascade do |t|

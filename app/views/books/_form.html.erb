@@ -1,5 +1,6 @@
-<%= simple_form_for @book do |f| %>
+<%= simple_form_for @book, :html => { :multipart => true } do |f| %>
 <%= select_tag(:genre_id, options_for_select(@genres), :prompt => "Select a genre") %>
+  <%= f.file_field :b_image %>
   <%= f.input :title, label: "Book Title" %>
 	<%= f.input :description %>
   <%= f.input :author %>
