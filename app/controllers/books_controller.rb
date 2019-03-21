@@ -3,6 +3,14 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
 
+  def search
+    if params[:search].blank?
+      @books = Book.all.order("created_at DESC")
+    else
+      @books = Book.search(params)
+    end
+  end
+
 
   def index
     if params[:genre].blank?
@@ -11,6 +19,9 @@ class BooksController < ApplicationController
       @genre_id = Genre.find_by(name: params[:genre]).id
       @books = Book.where(:genre_id => @genre_id).order("created_at DESC")
     end
+
+
+
   end
 
   def show

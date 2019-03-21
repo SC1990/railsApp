@@ -26,6 +26,14 @@
 				      <% end %>
           </ul>
 
+          <ul class="nav navbar-nav navbar-center">
+            <%= form_tag search_books_path, method: :get do %>
+            <%= text_field_tag :search, nil, placeholder: "Search" %>
+            <%= submit_tag "Search Books", class: "btn-custom" %>
+            <% end %>
+          </ul>
+
+
 			<ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
@@ -54,7 +62,7 @@
 
     <div class="container">
       <%= yield %>
-    </div> 
+    </div>
 
   </body>
 </html>
