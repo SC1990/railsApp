@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_03_20_213525) do
 
-  create_table "book_reviews", force: :cascade do |t|
-    t.integer "book_rating"
-    t.text "user_comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "book_id"
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "description"

@@ -50,6 +50,7 @@
 
           <% if user_signed_in? %>
 					     <li><%= link_to "Add New Book", new_book_path %></li>
+               <li><%= link_to "My Profile", user_path(current_user.id)%></li>
 				  <% end %>
       </ul>
 
