@@ -11,4 +11,8 @@ class Book< ApplicationRecord
     books
   end
 
+  def self.gsearch(params)
+    @books = GoogleBooks.search(params[:title])
+  end
+
 end

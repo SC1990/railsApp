@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'googlebooks', '~> 0.0.9'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'paperclip', '~> 6.1'
 gem 'simple_form', '~> 4.1'

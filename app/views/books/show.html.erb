@@ -1,3 +1,4 @@
+
 <div class="row">
 
   <div class="col-md-4">
@@ -8,7 +9,7 @@
 
     <div class="col-md-8">
       <div class="b-details">
-        <h2 class="b-title"><%= @book.title %></h2>
+        <h2 id ="tosearch" class="b-title"><%= @book.title %></h2>
         <h3 class="b-author"><span>by: </span><%= @book.author %></h3>
 
         <div class="average-review-rating" data-score=<%= @average_review %>></div>
@@ -20,9 +21,29 @@
 
   </div>
 
+
+
   <div class="row">
 
     <div class="col-md-4">
+
+      <div class="links btn-group">
+
+
+
+      	<% if user_signed_in? %>
+
+      		<% if @book.user_id == current_user.id %>
+
+      			<%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom" %>
+      			<%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+
+      		<% end %>
+
+      	<% end %>
+
+      </div>
+
       <div class="book-reviews">
 
           <h1>Reviews</h1>
@@ -35,25 +56,54 @@
         </div>
       </div>
 
-  </div>
-
-
-  <div class="links btn-group">
-
-  	<%= link_to "Back", root_path, class: "btn btn-custom" %>
-
-  	<% if user_signed_in? %>
-
-  		<% if @book.user_id == current_user.id %>
-
-  			<%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom" %>
-  			<%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-
-  		<% end %>
-
-  	<% end %>
 
   </div>
+
+    <div class="col-md-8">
+
+        <div id="searchresults" class="b-details">
+          <h2>Search Google Books for more like this</h2>
+
+          <button onclick="googlesearch()" type="button" name="button" class= "btn btn-custom">Search GoogleBooks</button>
+
+
+
+
+        </div>
+    </div>
+
+<script>
+      function googlesearch(){
+
+
+          var search = document.getElementById("tosearch").innerHTML;
+  
+          var url = '';
+          var img = '';
+          var title = '';
+          var author = '';
+
+          $.get("https://www.googleapis.com/books/v1/volumes?q=" + search,function(response){
+              for (var i = 0; i < response.items.length; i++) {
+                  title = $('<h4>' + response.items[i].volumeInfo.title + '</h4>');
+                  author = $('<h4>' + response.items[i].volumeInfo.authors + '</h4>');
+                  img = $('<img><br><a href =' + response.items[i].volumeInfo.infoLink + '><button>More info</button></a>');
+                  url = response.items[i].volumeInfo.imageLinks.thumbnail;
+                  img.attr('src', url);
+
+                  title.appendTo("#searchresults");
+                  author.appendTo("#searchresults");
+                  img.appendTo("#searchresults");
+              }
+          });
+
+
+      return false;
+
+    }
+
+</script>
+
 
 <script>
 	$('.review-rating').raty({

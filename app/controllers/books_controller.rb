@@ -3,6 +3,10 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
 
+  def gsearch
+    @books = GoogleBooks.search(params[:title])
+  end
+
   def search
     if params[:search].blank?
       @books = Book.all.order("created_at DESC")

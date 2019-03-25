@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     collection do
       get :search #new path for search
     end
+    collection do
+      get :gsearch #new path for gsearch
+    end
   end
   root 'books#index'
 end
