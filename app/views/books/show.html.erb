@@ -59,25 +59,71 @@
 
   </div>
 
-    <div class="col-md-8">
+    <div class="col-md-4">
 
         <div id="searchresults" class="b-details">
           <h2>Search Google Books for more like this</h2>
 
           <button onclick="googlesearch()" type="button" name="button" class= "btn btn-custom">Search GoogleBooks</button>
 
+        </div>
+    </div>
 
+    <div class="col-md-4">
 
+        <div id="moviesearch" class="b-details">
+          <h2>Related Movies</h2>
+
+          <button onclick="moviesearch()" type="button" name="button" class= "btn btn-custom">Search Movie</button>
 
         </div>
     </div>
+
+
+<script>
+          function moviesearch(){
+
+
+              var search = document.getElementById("tosearch").innerHTML;
+
+              var overview = '';
+              var img = '';
+              var title = '';
+              var releasedate = '';
+              var prefix = "http://image.tmdb.org/t/p/w500";
+
+              $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=f8f93e6707da5b8b61cee34f8e336790&query=" + search,
+                  function(json) {
+
+                    title = $('<h4>' + json.results[0].original_title + '</h4>')
+                    title.appendTo("#moviesearch");
+
+                    img = $('<img width="300" height="400" src=' + "http://image.tmdb.org/t/p/w500" + json.results[0].poster_path + ' />');
+                    img.appendTo("#moviesearch");
+
+                    releasedate = $('<h4>' + json.results[0].release_date + '</h4>')
+                    releasedate.appendTo("#moviesearch");
+
+                    overview = $('<h4>' + json.results[0].overview + '</h4>')
+                    overview.appendTo("#moviesearch");
+
+
+              });
+
+
+          return false;
+
+        }
+
+</script>
+
 
 <script>
       function googlesearch(){
 
 
           var search = document.getElementById("tosearch").innerHTML;
-  
+
           var url = '';
           var img = '';
           var title = '';
