@@ -12,7 +12,7 @@ gem 'pg', '1.1.4'
 gem 'puma', '~> 3.11'
 
 gem 'googlebooks', '~> 0.0.9'
-gem 'devise', '~> 4.6', '>= 4.6.1'
+gem 'devise', '~> 4.7'
 gem 'paperclip', '~> 6.1'
 gem 'simple_form', '~> 4.1'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
