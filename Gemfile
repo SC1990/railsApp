@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '1.1.4'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 
 gem 'googlebooks', '~> 0.0.9'
 gem 'devise', '~> 4.6', '>= 4.6.1'
